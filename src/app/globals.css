@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Oswald", "Arial Narrow", sans-serif;
+  --font-sans: "Barlow", "Segoe UI", sans-serif;
+
+  --color-bg0: #0b0e0c;
+  --color-bg1: #121713;
+  --color-bg2: #1a211c;
+  --color-bg3: #242d26;
+  --color-line: #2b352d;
+  --color-ink: #ece9df;
+  --color-mut: #99a59b;
+  --color-dim: #6c786e;
+  --color-turf: #4cb875;
+  --color-turfdeep: #1e6b41;
+  --color-turfdark: #11301f;
+  --color-gold: #e4b54e;
+  --color-clay: #d8604c;
+  --color-chalk: #f2efe4;
+}
+
+html,
+body {
+  background: var(--color-bg0);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bg3) transparent;
+}
+
+.display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+.pitch-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(236, 233, 223, 0.045) 0px,
+    rgba(236, 233, 223, 0.045) 1px,
+    transparent 1px,
+    transparent 26px
+  );
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: fadeUp 0.3s ease both;
+}
+
+@keyframes livePulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+.live-dot {
+  animation: livePulse 1.2s ease-in-out infinite;
+}
+
+@keyframes goalFlash {
+  0% {
+    background-color: rgba(228, 181, 78, 0.35);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+.goal-flash {
+  animation: goalFlash 1.4s ease-out both;
+}
+
+@keyframes tickerIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.ticker-in {
+  animation: tickerIn 0.25s ease both;
+}
+
+/* Cup nights: the whole UI shifts from league green to cup gold */
+.cup-theme {
+  --color-turf: #d9a441;
+  --color-turfdeep: #8a6420;
+  --color-turfdark: #2e2410;
+}
+
+/* ---- penalty shootout drama ---- */
+@keyframes penBallGL {
+  0% { transform: translate(-50%, 0) scale(1); }
+  55% { transform: translate(calc(-50% - 40px), -70px) scale(0.85); }
+  100% { transform: translate(calc(-50% - 82px), -138px) scale(0.7); }
+}
+@keyframes penBallGR {
+  0% { transform: translate(-50%, 0) scale(1); }
+  55% { transform: translate(calc(-50% + 40px), -70px) scale(0.85); }
+  100% { transform: translate(calc(-50% + 82px), -138px) scale(0.7); }
+}
+@keyframes penBallSL {
+  0% { transform: translate(-50%, 0) scale(1); }
+  60% { transform: translate(calc(-50% - 66px), -120px) scale(0.75); }
+  80% { transform: translate(calc(-50% - 88px), -84px) scale(0.8); }
+  100% { transform: translate(calc(-50% - 100px), -40px) scale(0.85); }
+}
+@keyframes penBallSR {
+  0% { transform: translate(-50%, 0) scale(1); }
+  60% { transform: translate(calc(-50% + 66px), -120px) scale(0.75); }
+  80% { transform: translate(calc(-50% + 88px), -84px) scale(0.8); }
+  100% { transform: translate(calc(-50% + 100px), -40px) scale(0.85); }
+}
+@keyframes penKeeperL {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  100% { transform: translateX(calc(-50% - 52px)) rotate(-24deg); }
+}
+@keyframes penKeeperR {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  100% { transform: translateX(calc(-50% + 52px)) rotate(24deg); }
+}
+@keyframes penResult {
+  0% { opacity: 0; transform: scale(0.5); }
+  45% { opacity: 1; transform: scale(1.15); }
+  100% { opacity: 1; transform: scale(1); }
+}
+.pen-ball-gl { animation: penBallGL 0.62s cubic-bezier(0.3, 0.6, 0.4, 1) both; }
+.pen-ball-gr { animation: penBallGR 0.62s cubic-bezier(0.3, 0.6, 0.4, 1) both; }
+.pen-ball-sl { animation: penBallSL 0.7s cubic-bezier(0.3, 0.6, 0.4, 1) both; }
+.pen-ball-sr { animation: penBallSR 0.7s cubic-bezier(0.3, 0.6, 0.4, 1) both; }
+.pen-keeper-left { animation: penKeeperL 0.5s ease-out both; }
+.pen-keeper-right { animation: penKeeperR 0.5s ease-out both; }
+.pen-result { animation: penResult 0.45s 0.45s ease-out both; }
